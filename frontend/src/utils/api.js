@@ -1,7 +1,8 @@
 import axios from "axios";
+import API_PATH from "./apiPath";
 
 const API = axios.create({
-    baseURL: "http://localhost:4000/api",
+    baseURL: API_PATH,
     withCredentials: true
 });
 
@@ -21,7 +22,7 @@ API.interceptors.response.use(
             originalRequest._retry = true;
             try {
                 const { data } = await axios.post(
-                    "http://localhost:4000/api/auth/refresh",
+                    `${API_PATH}/auth/refresh`,
                     {},
                     { withCredentials: true }
                 );
