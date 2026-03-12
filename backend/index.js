@@ -30,13 +30,20 @@ const allowedOrigins = [
 
 app.use(cors({
     origin: function (origin, callback) {
+        // Log the incoming origin for debugging on Render
+        console.log(`Incoming request from origin: ${origin}`);
+        
         // Allow requests with no origin (like mobile apps/Postman)
         if (!origin) return callback(null, true);
         
-        if (allowedOrigins.indexOf(origin) !== -1 || (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL)) {
+        const isAllowed = allowedOrigins.includes(origin) || (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL);
+        
+        console.log(`Access ${isAllowed ? "GRANTED" : "DENIED"} for origin: ${origin}`);
+
+        if (isAllowed) {
             callback(null, true);
         } else {
-            callback(new Error("Not allowed by CORS"));
+            callback(new Error(`Not allowed by CORS: ${origin}`));
         }
     },
     credentials: true
