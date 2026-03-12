@@ -36,7 +36,13 @@ app.use(cors({
         // Allow requests with no origin (like mobile apps/Postman)
         if (!origin) return callback(null, true);
         
-        const isAllowed = allowedOrigins.includes(origin) || (process.env.FRONTEND_URL && origin === process.env.FRONTEND_URL);
+        // Clean up URLs for matching (remove trailing slashes)
+        const cleanOrigin = origin.replace(/\/$/, "");
+        const cleanFrontendUrl = process.env.FRONTEND_URL ? process.env.FRONTEND_URL.replace(/\/$/, "") : null;
+
+        const isAllowed = 
+            allowedOrigins.includes(cleanOrigin) || 
+            (cleanFrontendUrl && cleanOrigin === cleanFrontendUrl);
         
         console.log(`Access ${isAllowed ? "GRANTED" : "DENIED"} for origin: ${origin}`);
 
