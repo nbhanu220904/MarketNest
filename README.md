@@ -48,10 +48,6 @@ MarketNest implements a secure JWT-based authentication system:
 - **Soft Deletes**: Products are "archived" instead of being hard-deleted to preserve historical data integrity.
 - **Ownership Enforcement**: Brands can only edit or delete products they created.
 
-## 🤖 AI Tools Usage
-
-- **Antigravity (Google DeepMind)**: Used for architecture planning, boilerplate generation, UI design implementation using Tailwind CSS, and logic orchestration across the full stack.
-- **Image Placeholders**: Initial design used generated assets for demonstration purposes.
 
 ---
 
