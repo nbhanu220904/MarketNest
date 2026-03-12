@@ -25,7 +25,9 @@ app.use(cookieParser());
 // Enable CORS
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://market-nest-frontend.vercel.app"
+    "https://market-nest-frontend.vercel.app",
+    "https://marketnest-rho.vercel.app",
+    "https://market-nest-backend-6aaa.onrender.com"
 ];
 
 app.use(cors({
